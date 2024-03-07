@@ -1,0 +1,17 @@
+<p>customers works!</p>
+<div>
+    <!-- {
+          id: 1,
+          name: "Example 1",
+          date: "Tue Mar 05 2024 16:30:17 GMT-0500",
+          products: 4,
+        }, -->
+  
+    <form [formGroup]="customerForm" (submit)="postData()">
+      <input type="text" id="name" formControlName="name" />
+      <input type="date" id="date" formControlName="date" />
+      <input type="number" id="productsAmount" formControlName="productsAmount" />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  

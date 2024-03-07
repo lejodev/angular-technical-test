@@ -6,58 +6,80 @@ const app = express();
 app.use(cors());
 const port = 3000;
 
-// Sample data (you can replace this with your AI functionality)
-let data = [
-  { id: 1, name: "Example 1" },
-  { id: 2, name: "Example 2" },
+// Sample customers (you can replace this with your AI functionality)
+let customers = [
+  {
+    id: 1,
+    name: "Example 1",
+    date: "Tue Mar 05 2024 16:30:17 GMT-0500",
+    products: 4,
+  },
+  {
+    id: 1,
+    name: "Example 1",
+    date: "Tue Mar 05 2024 16:33:11 GMT-0500",
+    products: 6,
+  },
+  {
+    id: 1,
+    name: "Example 1",
+    date: "Wed Mar 06 2024 12:25:25 GMT-0500",
+    products: 7,
+  },
+  {
+    id: 1,
+    name: "Example 1",
+    date: "Thu Mar 07 2024 02:26:57 GMT-0500",
+    products: 1,
+  },
 ];
 
 app.use(bodyParser.json());
 
-// GET all data
-app.get("/data", (req, res) => {
-  res.json(data);
+// GET all customers
+app.get("/customers", (req, res) => {
+  res.json(customers);
 });
 
-// GET data by ID
-app.get("/data/:id", (req, res) => {
+// GET customers by ID
+app.get("/customers/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  const item = data.find((item) => item.id === id);
+  const item = customers.find((item) => item.id === id);
   if (item) {
     res.json(item);
   } else {
-    res.status(404).json({ message: "Data not found" });
+    res.status(404).json({ message: "customers not found" });
   }
 });
 
-// POST new data
-app.post("/data", (req, res) => {
+// POST new customers
+app.post("/customers", (req, res) => {
   const newItem = req.body;
-  data.push(newItem);
+  customers.push(newItem);
   res.status(201).json(newItem);
 });
 
-// PUT/update data by ID
-app.put("/data/:id", (req, res) => {
+// PUT/update customers by ID
+app.put("/customers/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  const itemIndex = data.findIndex((item) => item.id === id);
+  const itemIndex = customers.findIndex((item) => item.id === id);
   if (itemIndex !== -1) {
-    data[itemIndex] = req.body;
-    res.json(data[itemIndex]);
+    customers[itemIndex] = req.body;
+    res.json(customers[itemIndex]);
   } else {
-    res.status(404).json({ message: "Data not found" });
+    res.status(404).json({ message: "customers not found" });
   }
 });
 
-// DELETE data by ID
-app.delete("/data/:id", (req, res) => {
+// DELETE customers by ID
+app.delete("/customers/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  const itemIndex = data.findIndex((item) => item.id === id);
+  const itemIndex = customers.findIndex((item) => item.id === id);
   if (itemIndex !== -1) {
-    data.splice(itemIndex, 1);
-    res.json({ message: "Data deleted" });
+    customers.splice(itemIndex, 1);
+    res.json({ message: "customers deleted" });
   } else {
-    res.status(404).json({ message: "Data not found" });
+    res.status(404).json({ message: "customers not found" });
   }
 });
 

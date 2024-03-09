@@ -4,18 +4,19 @@ import { CustomerRoutingModule } from './customer-routing.module';
 import { CustomersComponent } from './customers.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes } from '@angular/router';
+import { EditComponent } from './customer-form/customer-form.component';
 
 const routes: Routes = [
   {
-      path: "",
-      component: CustomersComponent
+    path: "",
+    component: CustomersComponent
   }
 ];
 
 
 
 @NgModule({
-  declarations: [CustomersComponent],
+  declarations: [CustomersComponent, EditComponent],
   imports: [
     CommonModule,
     FormsModule,

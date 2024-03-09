@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomersService } from './customers.service';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -10,30 +11,25 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class CustomersComponent implements OnInit {
 
-  constructor(private customersService: CustomersService) { }
+  constructor(private customersService: CustomersService, private router: Router) { }
 
   title = 'angular-technical-test';
   date!: Date
+  customers: any[] = [] // Make it a Customers type (<Customer[]>) 
 
   ngOnInit() {
-    console.log("sfgfdgdfgdd")
     this.customersService.getData().subscribe(data => {
       console.log(data)
-      this.date = new Date()
-      console.log(this.date)
+      this.customers = data
     })
   }
 
-  customerForm = new FormGroup({
-    name: new FormControl(""),
-    date: new FormControl(""),
-    productsAmount: new FormControl(0)
-  })
-
-  postData() { // Make this returns a Customer type
-    this.customersService.submitCustomerInfo(
-      this.customerForm.value.name ?? "",
-      this.customerForm.value.date ?? "",
-      this.customerForm.value.productsAmount ?? 0)
+  deleteCustomer(customerId: string) {
+    this.customersService.deleteCustomerById(customerId).subscribe((data) => {
+      this.ngOnInit()
+    })
+    console.log(customerId)
   }
+
+
 }

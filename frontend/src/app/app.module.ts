@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 import { FormsModule, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TestComponent } from './components/test/test.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent
+    TestComponent,
+    NavbarComponent,
+    HomeComponent
 
   ],
   imports: [

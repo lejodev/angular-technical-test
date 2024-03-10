@@ -23,6 +23,12 @@ cd backend
 ```
 
 3. **Instalar dependencias**
+
+``` 
+npm install
+```
+
+4. **Iniciar servidor**
 ```
 npm run dev
 ```
@@ -34,6 +40,11 @@ Para iniciar el servidor frontend, realiza los siguientes pasos:
 1. **Dirigirse a la carpeta frontend**
 ```
 cd frontend
+```
+
+2. **Instale dependencias**
+```
+npm install
 ```
 
 3. **Iniciar el servidor**

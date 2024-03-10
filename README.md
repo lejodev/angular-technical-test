@@ -52,6 +52,11 @@ npm install
 ng serve
 ```
 
+4. **Dirígase al siguiente link en su navegador**
+```
+http://localhost:4200/
+```
+
 Al ejecutar estos comandos. Ya estarían correndo tanto backend como frontend y podría usarse la aplicación
 
 

@@ -23,21 +23,11 @@ export class EditComponent implements OnInit {
       this.currentCustomerId = params['id']
       this.isUpdatedMode = !!this.currentCustomerId;
 
-
       if (this.isUpdatedMode) { // If update mode
 
         this.customerService.getCustomerById(this.currentCustomerId).subscribe(data => {
-
           this.originalFormValues = { ...data }
-
-
-          this.customerForm.patchValue({  // pass object and not simple data as an argument
-            name: data.name,
-            date: data.date,
-            country: data.country,
-            products: data.products
-          })
-
+          this.customerForm.patchValue(data)
           this.subcribeFormChanges()
         })
 
@@ -71,19 +61,13 @@ export class EditComponent implements OnInit {
 
         if (originalValue !== currentValue) {
           updatedValues[customerKey] = currentValue
-          console.log("eeeeeeeee", this.originalFormValues.value)
           this.customerService.updateCustomer(updatedValues, this.currentCustomerId).subscribe(() => this.navigationRoute.navigate(["/customers"]))
         } else {
-          console.log("SGFDFDSG")
           this.navigationRoute.navigate(["/customers"])
         }
 
 
       });
-      console.log(updatedValues)
-
-      // // this.customerService.updateCustomer(this.customerForm)
-
 
     } else {
       this.customerService.submitCustomerInfo(
@@ -93,19 +77,8 @@ export class EditComponent implements OnInit {
         this.customerForm.value.products ?? 0,)
         .subscribe(data => {
           this.navigationRoute.navigate(["/customers"])
-          console.log(data)
         })
     }
   }
-
-  getCustomer(id: string): void {
-    this.customerService.getCustomerById(id).subscribe(data => {
-      console.log(data)
-    })
-  }
-
-
-
-
 
 }

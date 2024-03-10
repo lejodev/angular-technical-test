@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const { v4: uuidv4 } = require("uuid");
 const app = express();
 app.use(cors());
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Sample customers (you can replace this with your AI functionality)
 let customers = [

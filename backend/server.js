@@ -11,28 +11,28 @@ let customers = [
   {
     id: "1",
     name: "Car Dealership",
-    date: "Tue Mar 05 2024 16:30:17 GMT-0500",
+    date: "2024-03-05",
     country: "España",
     products: 4,
   },
   {
     id: "2",
     name: "Contabilidad SAS",
-    date: "Tue Mar 05 2024 16:30:17 GMT-0500",
+    date: "2024-03-05",
     country: "Mexico",
     products: 4,
   },
   {
     id: "3",
     name: "Fumigaciones",
-    date: "Tue Mar 05 2024 16:30:17 GMT-0500",
+    date: "2024-02-05",
     country: "Argentina",
     products: 4,
   },
   {
     id: "4",
     name: "Lorem Ipsum Company",
-    date: "Tue Mar 05 2024 16:30:17 GMT-0500",
+    date: "2024-03-12",
     country: "Colombia",
     products: 4,
   },
@@ -104,5 +104,5 @@ app.delete("/customers/:id", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });

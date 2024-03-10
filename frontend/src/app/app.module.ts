@@ -8,13 +8,15 @@ import { TestComponent } from './components/test/test.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    AboutUsComponent
 
   ],
   imports: [

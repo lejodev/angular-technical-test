@@ -30,6 +30,7 @@ export class EditComponent implements OnInit {
 
           this.originalFormValues = { ...data }
 
+
           this.customerForm.patchValue({  // pass object and not simple data as an argument
             name: data.name,
             date: data.date,
@@ -70,14 +71,20 @@ export class EditComponent implements OnInit {
 
         if (originalValue !== currentValue) {
           updatedValues[customerKey] = currentValue
-          this.customerService.updateCustomer(updatedValues, this.currentCustomerId).subscribe(data => {
-          })
+          console.log("eeeeeeeee", this.originalFormValues.value)
+          this.customerService.updateCustomer(updatedValues, this.currentCustomerId).subscribe(() => this.navigationRoute.navigate(["/customers"]))
         } else {
+          console.log("SGFDFDSG")
           this.navigationRoute.navigate(["/customers"])
         }
 
 
       });
+      console.log(updatedValues)
+
+      // // this.customerService.updateCustomer(this.customerForm)
+
+
     } else {
       this.customerService.submitCustomerInfo(
         this.customerForm.value.name ?? "",
@@ -93,6 +100,7 @@ export class EditComponent implements OnInit {
 
   getCustomer(id: string): void {
     this.customerService.getCustomerById(id).subscribe(data => {
+      console.log(data)
     })
   }
 

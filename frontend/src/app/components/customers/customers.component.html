@@ -1,11 +1,9 @@
 <div class="container mt-4">
-  <!-- Add button -->
   <div class="row mb-2">
     <div class="col text-end">
       <button class="btn btn-primary" routerLink="customer">Crear</button>
     </div>
   </div>
-  <!-- Customers Table -->
   <div class="table-responsive">
     <table class="table">
       <thead>
@@ -21,7 +19,7 @@
         <tr *ngFor="let customer of customers">
           <td>{{ customer.name }}</td>
           <td>{{ customer.date }}</td>
-          <td>{{ customer.country }}</td> <!-- Dato del país por cada cliente -->
+          <td>{{ customer.country }}</td>
           <td>{{ customer.products }} products</td>
           <td>
             <button class="btn btn-outline-secondary btn-sm" [routerLink]="['/customers/customer', customer.id]">Editar</button>

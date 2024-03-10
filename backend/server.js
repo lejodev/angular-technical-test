@@ -10,28 +10,28 @@ const port = process.env.PORT || 3000;
 let customers = [
   {
     id: "1",
-    name: "gfg",
+    name: "Car Dealership",
     date: "Tue Mar 05 2024 16:30:17 GMT-0500",
     country: "España",
     products: 4,
   },
   {
     id: "2",
-    name: "www",
+    name: "Contabilidad SAS",
     date: "Tue Mar 05 2024 16:30:17 GMT-0500",
     country: "Mexico",
     products: 4,
   },
   {
     id: "3",
-    name: "ggf",
+    name: "Fumigaciones",
     date: "Tue Mar 05 2024 16:30:17 GMT-0500",
     country: "Argentina",
     products: 4,
   },
   {
     id: "4",
-    name: "aaaa",
+    name: "Lorem Ipsum Company",
     date: "Tue Mar 05 2024 16:30:17 GMT-0500",
     country: "Colombia",
     products: 4,

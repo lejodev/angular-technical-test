@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CustomersService } from '../customers.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Customer } from 'src/app/models/customer';
 
 @Component({
   selector: 'app-customer',
@@ -12,22 +13,22 @@ export class EditComponent implements OnInit {
   isUpdatedMode: boolean = false
   originalForm!: FormGroup
   originalFormValues: any = {};
+  currentCustomerId: any;
 
   constructor(private customerService: CustomersService, private router: ActivatedRoute, private navigationRoute: Router) { }
 
   ngOnInit(): void {
     this.router.params.subscribe(params => {
 
-      const id = params['id']
-      this.isUpdatedMode = !!id;
+      this.currentCustomerId = params['id']
+      this.isUpdatedMode = !!this.currentCustomerId;
 
 
       if (this.isUpdatedMode) { // If update mode
 
-        this.customerService.getCustomerById(id).subscribe(data => {
+        this.customerService.getCustomerById(this.currentCustomerId).subscribe(data => {
 
           this.originalFormValues = { ...data }
-
 
           this.customerForm.patchValue({  // pass object and not simple data as an argument
             name: data.name,
@@ -50,25 +51,33 @@ export class EditComponent implements OnInit {
     date: new FormControl(""),
     country: new FormControl(""),
     products: new FormControl(0)
-  })
+  },)
 
   subcribeFormChanges() {
-    console.log("PERRO!")
   }
 
   postData() { // Make this returns a Customer type
 
+
+
     if (this.isUpdatedMode) {
+      const updatedValues: { [key: string]: string | number | null | undefined } = {};
+
+      Object.keys(this.customerForm.value).forEach(key => {
+        const customerKey = key as keyof Customer;
+        const currentValue = this.customerForm.value[customerKey]
+        const originalValue = this.originalFormValues[customerKey]
+
+        if (originalValue !== currentValue) {
+          updatedValues[customerKey] = currentValue
+          this.customerService.updateCustomer(updatedValues, this.currentCustomerId).subscribe(data => {
+          })
+        } else {
+          this.navigationRoute.navigate(["/customers"])
+        }
 
 
-      // Compare originalFormValues and current form values to determine changes
-      Object.keys(this.customerForm.value).forEach((changes, key) => {
-        console.log(changes)
-      }, {});
-
-      // this.customerService.updateCustomer(this.customerForm)
-      
-
+      });
     } else {
       this.customerService.submitCustomerInfo(
         this.customerForm.value.name ?? "",
@@ -84,7 +93,6 @@ export class EditComponent implements OnInit {
 
   getCustomer(id: string): void {
     this.customerService.getCustomerById(id).subscribe(data => {
-      console.log(data)
     })
   }
 

@@ -77,7 +77,7 @@ app.put("/customers/:id", (req, res) => {
 });
 
 app.patch("/customers/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
   const itemIndex = customers.findIndex((item) => item.id === id);
   if (itemIndex !== -1) {
     const updatedCustomer = { ...customers[itemIndex], ...req.body };

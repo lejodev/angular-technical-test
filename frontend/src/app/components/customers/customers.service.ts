@@ -40,10 +40,9 @@ export class CustomersService {
     return this.http.delete(`http://localhost:3000/customers/${customerId}`) // mnake it ENV variable
   }
 
-  updateCustomer(customer: FormGroup) {
-    console.log("Current customer: ", customer)
-
-
+  updateCustomer(data: {}, id: string) {
+    let customerId = id
+    return this.http.patch(`http://localhost:3000/customers/${customerId}`,  data )
   }
 
 
